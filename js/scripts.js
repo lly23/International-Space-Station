@@ -28,7 +28,6 @@ $(function(){
 
         // call geoCode function within success function and pass the latitude and longitude variables into the function
         geoCode(latitude, longitude);
-        getInformation(latitude, longitude);
       }
     });
   }, 5000);
