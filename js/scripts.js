@@ -1,11 +1,12 @@
 $(function(){
-  console.log('scripts loaded');
-
   // HTML variable
   var html = '';
 
-  // create function with api call for space station and have it called every 5 seconds
-  setInterval(function() {
+  // call getPosition function every 5 seconds
+  setInterval(getPosition, 5000);
+
+  // create function with api call for space station and have the geocode api call function nested within success function
+  function getPosition() {
     // start with API variables for space station
     var stationAPI = 'http://api.open-notify.org/iss-now.json';
     var stationData = [];
@@ -30,7 +31,7 @@ $(function(){
         geoCode(latitude, longitude);
       }
     });
-  }, 5000);
+  }
 
   // once latitude and longitude variables from previous ajax call are passed through, variables can be added to API url
   function geoCode(latitude, longitude) {
@@ -50,7 +51,6 @@ $(function(){
       success: function(geocodingData) {
         console.log(latitude);
         console.log(longitude);
-        console.log(geocodingAPI);
         console.log(geocodingData);
 
         // If geocode data returns with 'unable to geocode' error, the station is over an ocean
